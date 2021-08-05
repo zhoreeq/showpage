@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+#
+#      Watch beautiful web pages without all the modern webshit
+#          Requires wget and w3m (sudo apt insall wget w3m)
+#
+
+showpage ()
+{
+    TMPDIR=/tmp/showpage_$RAND
+    mkdir -p $TMPDIR && cd $TMPDIR
+
+    wget -O index.html -nv $* && w3m index.html || echo "Network failure"
+
+    cd - && rm -rf $TMPDIR
+}
+
+showpage $*
